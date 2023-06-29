@@ -19,3 +19,12 @@ v18.16.0
 % npm -v
 9.5.1
 ```
+
+### Use create-next-app
+
+Starting from an empty directory, we'll use [create-next-app](https://nextjs.org/docs/pages/api-reference/create-next-app) to create a brand new [Next.js v13](https://nextjs.org) full-stack application:
+
+```sh
+# Create a new Next.js app in the current directory
+% npx create-next-app@latest ./
+```
