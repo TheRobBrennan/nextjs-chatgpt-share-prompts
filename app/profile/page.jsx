@@ -1,26 +1,27 @@
 "use client";
-import { useState, useEffect } from "react";
+
 import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Profile from "@components/Profile";
 
 const MyProfile = () => {
-  const { data: session } = useSession();
   const router = useRouter();
-  const [prompts, setPrompts] = useState([]);
+  const { data: session } = useSession();
+
+  const [myprompts, setMyprompts] = useState([]);
 
   useEffect(() => {
-    const fetchPrompts = async () => {
-      console.log(`Fetching prompts for user ${session.user.id}`);
+    const fetchprompts = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/prompts`);
       const data = await response.json();
 
-      setPrompts(data);
+      setMyprompts(data);
     };
 
-    if (session?.user.id) fetchPrompts();
-  }, []);
+    if (session?.user.id) fetchprompts();
+  }, [session?.user.id]);
 
   const handleEdit = (prompt) => {
     router.push(`/update-prompt?id=${prompt._id}`);
@@ -36,19 +37,23 @@ const MyProfile = () => {
         await fetch(`/api/prompt/${prompt._id.toString()}`, {
           method: "DELETE",
         });
-        const filteredPrompts = prompts.filter((p) => p._id !== prompt._id);
-        setPrompts(filteredPrompts);
+
+        const filteredprompts = myprompts.filter(
+          (item) => item._id !== prompt._id
+        );
+
+        setMyprompts(filteredprompts);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     }
   };
 
   return (
     <Profile
-      name={"My"}
-      desc="Welcome to your personalized profile page"
-      data={prompts}
+      name="My"
+      desc="Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination"
+      data={myprompts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
     />
