@@ -27,8 +27,11 @@ const handler = NextAuth({
     //    Application type - "Web application"
     //    Name - "Web client 1" is the default, but you can call it whatever you'd like
     //    Authorized JavaScript origins - "http://localhost:3000"
+    //    Authorized JavaScript origins [PRODUCTION] - "https://nextjs-chatgpt-share-prompts.vercel.app"
     //    Authorized redirect URIs - "http://localhost:3000"
     //    Authorized redirect URIs - "http://localhost:3000/api/auth/callback/google"
+    //    Authorized redirect URIs [PRODUCTION] - "https://nextjs-chatgpt-share-prompts.vercel.app"
+    //    Authorized redirect URIs [PRODUCTION] - "https://nextjs-chatgpt-share-prompts.vercel.app/api/auth/callback/google"
     //  Step 14 - Click "Create"
     //  Step 15 - Copy and paste the Client ID and Client Secret to environment variables in your .env file
     GoogleProvider({
