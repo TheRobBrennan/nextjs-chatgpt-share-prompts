@@ -23,8 +23,8 @@
   position: absolute;
   content: "";
   z-index: 2;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   top: 0;
 }
 
@@ -33,8 +33,8 @@
   background-image: url("/assets/images/grid.svg");
   z-index: 1;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   top: 0;
   opacity: 0.4;
   filter: invert(1);
@@ -43,7 +43,7 @@
 .gradient {
   height: fit-content;
   z-index: 3;
-  width: 100%;
+  width: 100vw;
   max-width: 640px;
   background-image: radial-gradient(
       at 27% 37%,
@@ -58,8 +58,8 @@
     radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
   position: absolute;
   content: "";
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   filter: blur(100px) saturate(150%);
   top: 80px;
   opacity: 0.15;
