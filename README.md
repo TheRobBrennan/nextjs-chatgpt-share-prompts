@@ -1,4 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) - inspired by the YouTube video from JavaScript Mastery at [https://www.youtube.com/watch?v=wm5gMKuwSYk](https://www.youtube.com/watch?v=wm5gMKuwSYk)
+
+Additional resources include:
+
+- GitHub gist for additional project setup and configuration files available at [https://gist.github.com/adrianhajdin/6df61c6cd5ed052dce814a765bff9032](https://gist.github.com/adrianhajdin/6df61c6cd5ed052dce814a765bff9032)
+- Assets for this project are available for free download using Google Drive at [https://drive.google.com/file/d/15bGW9HBImu1p3HAYalnaj2Ig_Sn-1c-f/view](https://drive.google.com/file/d/15bGW9HBImu1p3HAYalnaj2Ig_Sn-1c-f/view)
 
 ## Getting Started
 
