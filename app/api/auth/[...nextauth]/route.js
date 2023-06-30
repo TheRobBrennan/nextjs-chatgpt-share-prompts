@@ -1,6 +1,9 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
+import User from "@models/user";
+import { connectToDB } from "@utils/database";
+
 const handler = NextAuth({
   providers: [
     // To set up Google Authentication:
@@ -25,6 +28,7 @@ const handler = NextAuth({
     //    Name - "Web client 1" is the default, but you can call it whatever you'd like
     //    Authorized JavaScript origins - "http://localhost:3000"
     //    Authorized redirect URIs - "http://localhost:3000"
+    //    Authorized redirect URIs - "http://localhost:3000/api/auth/callback/google"
     //  Step 14 - Click "Create"
     //  Step 15 - Copy and paste the Client ID and Client Secret to environment variables in your .env file
     GoogleProvider({
@@ -32,11 +36,38 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  async session({ session }) {},
+
+  async session({ session }) {
+    const sessionUser = await User.findOne({
+      email: session.user.email,
+    });
+
+    session.user.id = sessionUser._id.toString();
+
+    return session;
+  },
+
   async signIn({ profile }) {
     try {
-      // Serverless function that will spin up a connection to our database server every time it is invoked
-    } catch (error) {}
+      await connectToDB();
+
+      // check if a user already exists
+      const userExists = await User.findOne({ email: profile.email });
+
+      // If not, create a new user
+      if (!userExists) {
+        await User.create({
+          email: profile.email,
+          username: profile.name.replace(" ", "").toLowerCase(),
+          image: profile.picture,
+        });
+      }
+
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   },
 });
 
